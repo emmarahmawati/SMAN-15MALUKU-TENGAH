@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="description" content="Kokurikuler SMAN 15 Maluku Tengah - Program Bangun Pagi & Tidur Cepat" />
+  <title>Kokurikuler SMAN 15 Malteng</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Splash -->
+  <div id="splash" class="splash">
+    <div class="splash-logo">
+      <div class="splash-circle"></div>
+      <h1>Kokurikuler</h1>
+      <p>SMAN 15 Maluku Tengah</p>
+    </div>
+  </div>
+
+  <!-- Login screen -->
+  <section id="screen-login" class="screen hidden">
+    <div class="login-hero">
+      <div class="login-badge">🌅</div>
+      <h1>Bangun Pagi<br/>& Tidur Cepat</h1>
+      <p>Program kokurikuler SMAN 15 Maluku Tengah</p>
+    </div>
+
+    <div class="login-card glass">
+      <div class="tabs">
+        <button class="tab active" data-tab="siswa">Siswa</button>
+        <button class="tab" data-tab="guru">Guru Wali</button>
+      </div>
+
+      <form id="form-login-siswa" class="tab-panel active">
+        <label>Nama Lengkap</label>
+        <input name="nama" required placeholder="Nama sesuai data sekolah" />
+        <label>Fase</label>
+        <select name="fase" required>
+          <option value="">Pilih fase</option>
+          <option>E</option><option>F</option>
+        </select>
+        <label>Kelas</label>
+        <input name="kelas" required placeholder="Contoh: X-1" />
+        <button class="btn-primary" type="submit">Masuk sebagai Siswa</button>
+      </form>
+
+      <form id="form-login-guru" class="tab-panel">
+        <label>Nama Guru Wali</label>
+        <input name="nama" required placeholder="Nama lengkap" />
+        <label>Password</label>
+        <input name="password" type="password" required placeholder="••••••••" />
+        <button class="btn-primary" type="submit">Masuk sebagai Guru</button>
+      </form>
+    </div>
+
+    <p class="login-foot">v1.0 · PWA · © SMAN 15 Maluku Tengah</p>
+  </section>
+
+  <!-- SISWA APP -->
+  <section id="screen-siswa" class="screen hidden app">
+    <header class="app-header">
+      <div>
+        <p class="greeting" id="greeting">Halo!</p>
+        <h2 id="siswa-nama">-</h2>
+      </div>
+      <button class="avatar" id="btn-profile">🎓</button>
+    </header>
+
+    <main class="app-main" id="siswa-main">
+      <!-- pages rendered by js -->
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-page="dashboard"><span>🏠</span><small>Home</small></button>
+      <button class="nav-btn" data-page="tidur"><span>🌙</span><small>Tidur</small></button>
+      <button class="nav-btn" data-page="bangun"><span>☀️</span><small>Bangun</small></button>
+      <button class="nav-btn" data-page="riwayat"><span>📅</span><small>Riwayat</small></button>
+      <button class="nav-btn" data-page="reward"><span>🏆</span><small>Reward</small></button>
+    </nav>
+  </section>
+
+  <!-- GURU APP -->
+  <section id="screen-guru" class="screen hidden app">
+    <header class="app-header">
+      <div>
+        <p class="greeting">Guru Wali</p>
+        <h2 id="guru-nama">-</h2>
+      </div>
+      <button class="avatar" id="btn-logout-guru">⎋</button>
+    </header>
+    <main class="app-main" id="guru-main"></main>
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-gpage="overview"><span>📊</span><small>Overview</small></button>
+      <button class="nav-btn" data-gpage="siswa"><span>👥</span><small>Siswa</small></button>
+      <button class="nav-btn" data-gpage="checkin"><span>✅</span><small>Check-in</small></button>
+      <button class="nav-btn" data-gpage="laporan"><span>📄</span><small>Laporan</small></button>
+      <button class="nav-btn" data-gpage="setting"><span>⚙️</span><small>Setting</small></button>
+    </nav>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+  <!-- Loader -->
+  <div id="loader" class="loader hidden"><div class="spinner"></div></div>
+  <!-- Confetti canvas -->
+  <canvas id="confetti"></canvas>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/gamification.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/checkin.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/guru.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+    }
+  </script>
+</body>
+</html>
